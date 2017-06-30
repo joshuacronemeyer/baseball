@@ -20,4 +20,17 @@ describe Baseball do
       expect(game.offense).to eq(home)
     end
   end
+
+  describe "#defense" do
+    it "should have home defending in top of the inning" do
+      game = Baseball.new(home, away)
+      expect(game.defense).to eq(home)
+    end
+
+    it "should have visitor defending in bottom of the inning" do
+      game = Baseball.new(home, away)
+      game.change_sides!
+      expect(game.defense).to eq(away)
+    end
+  end
 end
