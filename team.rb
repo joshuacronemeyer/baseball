@@ -1,6 +1,8 @@
 
 class Team
   POSITIONS = ["1B", "2B", "3B", "C", "RF", "LF", "CF", "P", "SS"]
+
+  attr_accessor :name
   def initialize(name)
     @name = name
     @players = POSITIONS.map{|p| Player.new(p)}
@@ -18,7 +20,7 @@ class Team
 
   def next_batter
     current_batter_index = @players.index(@at_bat)
-    next_batter_index = current_batter_index+=1 % @players.count
+    next_batter_index = ((current_batter_index+=1) % @players.count)
     @at_bat = @players[next_batter_index]
   end
 

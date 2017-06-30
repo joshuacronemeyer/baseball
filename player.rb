@@ -32,6 +32,10 @@ class Player
     @position == "P"
   end
 
+  def to_s
+    @name
+  end
+
   private
   def random_name
     "#{PLAYER_FIRST_NAMES.sample} #{PLAYER_LAST_NAMES.sample}"

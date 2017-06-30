@@ -6,11 +6,22 @@ class Umpire
   end
 
   def play_ball
+    run_inning
+  end
+
+  def run_inning
+    puts "Welcome to the top of the 1st"
+    puts "#{@game.offense.name} will be batting"
+    until side_change?
+      next_at_bat
+    end
+    @game.change_sides!
+    puts "It's the bottom of the 1st"
+    puts "#{@game.offense.name} will be batting"
     until side_change?
       next_at_bat
     end
   end
-
   private
 
   def side_change?
@@ -20,7 +31,7 @@ class Umpire
   def next_at_bat
     @count = Count.new
     while @count.not_over?
-      ruling = Ruling.new(@game.visitor.pitcher.pitch, @game.home.batter.bat)
+      ruling = Ruling.new(@game.defense.pitcher.pitch, @game.offense.batter.bat)
       @count.strike! if ruling.strike?
       @count.ball! if ruling.ball?
       break if ruling.hit?
