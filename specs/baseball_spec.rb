@@ -33,4 +33,5 @@ describe Baseball do
       expect(game.defense).to eq(away)
     end
   end
+
 end

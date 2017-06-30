@@ -1,6 +1,6 @@
 class Baseball
 
-  attr_reader :home, :visitor, :outs
+  attr_reader :outs
   def initialize(home_team, away_team)
     @home = home_team
     @visitor = away_team

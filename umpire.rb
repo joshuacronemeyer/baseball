@@ -38,7 +38,7 @@ class Umpire
     end
     out! if @count.out?
     walk! if @count.walk?
-    @game.home.next_batter
+    @game.offense.next_batter
   end
 
   def out!
