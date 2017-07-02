@@ -27,4 +27,8 @@ class Team
   def pitcher
     @players.find{|p| p.pitcher?}
   end
+
+  def to_s
+    @name
+  end
 end

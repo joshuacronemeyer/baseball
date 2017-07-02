@@ -3,6 +3,7 @@ require_relative 'pitch'
 require_relative 'player'
 require_relative 'team'
 require_relative 'umpire'
+require_relative 'bases'
 require_relative 'baseball'
 
 def draw_diamond

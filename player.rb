@@ -3,8 +3,8 @@ class Player
   PLAYER_FIRST_NAMES = ["Jacks", "Jay", "Simon", "Willie", "Gaga", "Sonnie", "Alice", "Izzy", "Sofia", "Rafael", "Kate", "Sticky", "Loopy", "Biffy"]
   PLAYER_LAST_NAMES = ["Brown", "Smith", "Cronemeyer", "Hippert", "Johns", "Lennon", "McCartney", "Curry", "Gonzalez"]
 
-  def initialize(position)
-    @name = random_name
+  def initialize(position, name=nil)
+    @name = name || random_name
     @position = position
   end
 

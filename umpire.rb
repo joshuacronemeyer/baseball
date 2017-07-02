@@ -6,22 +6,28 @@ class Umpire
   end
 
   def play_ball
-    run_inning
+    until @game.complete?
+      run_inning
+      @game.next_inning
+    end
+
+    puts "The game is over with the score #{@game.the_score}. The #{@game.winner} win!"
   end
 
   def run_inning
-    puts "Welcome to the top of the 1st"
+    puts "Welcome to the top of the #{@inning} inning"
     puts "#{@game.offense.name} will be batting"
     until side_change?
       next_at_bat
     end
     @game.change_sides!
-    puts "It's the bottom of the 1st"
+    puts "It's the bottom of the #{@inning} inning"
     puts "#{@game.offense.name} will be batting"
     until side_change?
       next_at_bat
     end
   end
+
   private
 
   def side_change?
@@ -38,6 +44,7 @@ class Umpire
     end
     out! if @count.out?
     walk! if @count.walk?
+    hit! if ruling.hit?
     @game.offense.next_batter
   end
 
@@ -47,7 +54,13 @@ class Umpire
   end
 
   def walk!
-    puts "Walk."
+    puts "Walk"
+    @game.advance_runners(@game.offense.batter)
+  end
+
+  def hit!
+    puts "Hit!"
+    @game.advance_runners(@game.offense.batter)
   end
 
   class Ruling
@@ -69,9 +82,7 @@ class Umpire
     end
 
     def hit?
-      hit = @swing.swing? && @pitch.over_the_plate?
-      puts "Hit!" if hit
-      hit
+      @swing.swing? && @pitch.over_the_plate?
     end
   end
 
